@@ -7,6 +7,7 @@ include 'social/facebook_verifier.php';
 include 'social/github_verifier.php';
 include 'social/twitter_verifier.php';
 
+// in prod
 // $json = $_POST["json"];
 // for local testing
 $json_file_name = $_GET['name'];
