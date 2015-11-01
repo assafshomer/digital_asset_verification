@@ -5,13 +5,12 @@
 
 		public static $cdir = 'certs/'; #make sure to chmod 777 
 		public static $certFileName = 'level';
-		public static $negativeResult = array('company_name'=>'','company_url'=>'','verification_result'=>false,'url_matching'=>false);
 
 		function DomainVerifier($json){
 			$this->json = $json;
 			$this->reader = new JsonReader($json);
 			$this->asset_verified = false;
-			
+			$this->company_name = '';
 			$this->ssl_verified = false;
 			$this->url_matching = false;
 
@@ -20,14 +19,12 @@
 		}
 
 		private function verify_domain_json($json,$reader){
-			if (empty($json)) {
-				return self::$negativeResult;
-			};
-			$url = $reader->get_path('domain,url');
+			if (empty($json)) {return;};
+			$url = $reader->get_path('domain,url');			
 			if ($this->verify_url($url)) {
 				return $this->verify_domain_by_url($url);
 			} else {
-				return self::$negativeResult;
+				return;
 			};
 		}
 
