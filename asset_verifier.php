@@ -1,6 +1,10 @@
 <?php
 
   include_once 'json_reader.php';
+  include 'domain/domain_verifier.php';
+  include 'social/facebook_verifier.php';
+  include 'social/github_verifier.php';
+  include 'social/twitter_verifier.php';
 
   class AssetVerifier {
 
@@ -11,16 +15,16 @@
      {
         $this->json = $json;
         $this->reader = new JsonReader($json);
-        $this->result['domain'] = self::$domainDefault;
-        $this->result['social'] = self::$socialDefault;
+        $this->verifications['domain'] = self::$domainDefault;
+        $this->verifications['social'] = self::$socialDefault;
         $this->verify($json,$this->reader);
      }
 
      private function verify($json,$reader){
         if (empty(json_decode($json))) {return;};
         
-        $domain = $this->result['domain'];
-        $social = $this->result['social'];
+        $domain = $this->verifications['domain'];
+        $social = $this->verifications['social'];
 
         if ($reader->get_path('domain')) {
           $domain_verifier = new DomainVerifier($this->json);
@@ -42,8 +46,8 @@
           $social['twitter']=$twitter_verifier->verified;
         };
 
-        $this->result['social'] = $social;
-        $this->result['domain'] = $domain;
+        $this->verifications['social'] = $social;
+        $this->verifications['domain'] = $domain;
          
      }
 
