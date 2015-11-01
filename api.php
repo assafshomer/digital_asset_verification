@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
 include 'domain/domain_verifier.php';
@@ -14,20 +14,20 @@ include 'asset_verifier.php';
 $json_file_name = $_GET['name'];
 $json = file_get_contents('../verify/test/fixtures/'.$json_file_name.'.json');
 
-$twitter = new TwitterVerifier($json);
-$facebook = new FacebookVerifier($json);
-$github = new GithubVerifier($json); 
-$domain = new DomainVerifier($json);
+// $twitter = new TwitterVerifier($json);
+// $facebook = new FacebookVerifier($json);
+// $github = new GithubVerifier($json); 
+// $domain = new DomainVerifier($json);
 $full = new AssetVerifier($json);
 
-$domainCheck = array("company" => $domain->company_name, "ssl_verified" => $domain->ssl_verified, "url_matching" => $domain->url_matching, "asset_verified" => $domain->asset_verified);
-$socialCheck["facebook"] = $facebook->verified;
-$socialCheck["github"] = $github->verified;
-$socialCheck["twitter"] = $twitter->verified;
+// $domainCheck = array("company" => $domain->company_name, "ssl_verified" => $domain->ssl_verified, "url_matching" => $domain->url_matching, "asset_verified" => $domain->asset_verified);
+// $socialCheck["facebook"] = $facebook->verified;
+// $socialCheck["github"] = $github->verified;
+// $socialCheck["twitter"] = $twitter->verified;
 
-$ret["domain"] = $domainCheck;
-$ret["social"] = $socialCheck;
-$ret["full"] = $full->social;
+// $ret["domain"] = $domainCheck;
+// $ret["social"] = $socialCheck;
+$ret["full"] = $full->result;
 
 header('Content-Type: application/json');
 echo json_encode($ret);
