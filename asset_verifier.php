@@ -4,25 +4,24 @@
   include 'domain/domain_verifier.php';
   include 'social/facebook_verifier.php';
   include 'social/github_verifier.php';
-  include 'social/twitter_verifier.php';
+  include 'social/twitter_hashtag_verifier.php';
 
   class AssetVerifier {
 
     public static $domainDefault = array("company" => '', "ssl_verified" => false, "url_matching" => false, "asset_verified" => false);
     public static $socialDefault = array("facebook" => false, "github" => false, "twitter" => false);
 
-     function AssetVerifier($json) 
+     function AssetVerifier($asset_id,$json) 
      {
         $this->json = $json;
-        $this->reader = new JsonReader($json);
+        $this->reader = new JsonReader($json);        
         $this->verifications['domain'] = self::$domainDefault;
         $this->verifications['social'] = self::$socialDefault;
-        $this->verify($json,$this->reader);
+        $this->verify($asset_id,$json,$this->reader);
      }
 
-     private function verify($json,$reader){
-        if (empty(json_decode($json))) {return;};
-        
+     private function verify($asset_id,$json,$reader){
+        if (empty(json_decode($json))) {return;};        
         $domain = $this->verifications['domain'];
         $social = $this->verifications['social'];
 
@@ -41,8 +40,8 @@
           $social['github']=$github_verifier->verified;
         };
 
-        if ($reader->get_path('social,twitter')) {
-          $twitter_verifier = new TwitterVerifier($this->json);
+        if ($reader->get_path('social,twitter')) {          
+          $twitter_verifier = new TwitterVerifier($asset_id,$this->json);
           $social['twitter']=$twitter_verifier->verified;
         };
 
