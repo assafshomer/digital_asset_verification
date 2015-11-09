@@ -11,7 +11,7 @@
 
 		function FacebookVerifier($asset_id,$expected_text,$reader){
 			$comment_id = $reader->get_path('social,facebook,comment_id');
-			$fb_id = $reader->get_path('social,facebook,fb_id');
+			$fb_id = $reader->get_path('social,facebook,id');
 			$story_fbid = $reader->get_path('social,facebook,story_fbid');
 			if (!($comment_id && $fb_id && $story_fbid)) {$this->verified = false;};			
 			$feed = $this->search_page_feed();
