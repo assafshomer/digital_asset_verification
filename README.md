@@ -40,4 +40,4 @@
 	Verifying issuance of colored coins asset with ID #assetid
 ```
 * Right click on the comment timestamp
-![extracting facebook ids from comment timestamp](~/Pictures/fb_comment_timestamp.png?raw=true "Extracting facebook ids from the comment timestamp")
+![extracting facebook ids from comment timestamp](/home/assaf/Pictures/fb_comment_timestamp.png?raw=true "Extracting facebook ids from the comment timestamp")
