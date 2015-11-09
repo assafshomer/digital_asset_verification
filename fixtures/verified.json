@@ -1,0 +1,21 @@
+{
+	"social":{
+		"twitter":{			
+			"username":"assaf_colu"
+		},
+		"facebook":{
+			"comment_id":493393800838033,
+			"fb_id":486034634907283,
+			"story_fbid":493393697504710	
+		},
+		"github":{
+			"aid":"LJEC6Q2h9JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"pid":"6c704f5759927212e714"			
+		}
+	},
+	"domain":{
+		"aid":"U9a36XP1UwL5pxaYYiZYJ86sUqWAJ2dGbLaer",
+		"url":"https://www.bankofamerica.com",
+		"path":"assets.txt"
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"social":{
+		"twitter":{
+			"aid":"LJEC6Q2h8JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"pid":"651645990554968064"
+		},
+		"facebook":{
+			"aid":"LJEC6Q2h8JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"user":"assafcolu",
+			"pid":"137988556553873"			
+		},
+		"github":{
+			"aid":"LJEC6Q2h8JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"pid":"6c704f5759927212e714"			
+		}
+	},
+	"domain":{
+		"url":"https://www.example.com",
+		"path":"assets.txt"
+	}
+}

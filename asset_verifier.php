@@ -2,7 +2,7 @@
 
   include_once 'json_reader.php';
   include 'domain/domain_verifier.php';
-  include 'social/facebook_verifier.php';
+  include 'social/facebook_feed_verifier.php';
   include 'social/github_verifier.php';
   include 'social/twitter_hashtag_verifier.php';
 
@@ -14,14 +14,14 @@
      function AssetVerifier($asset_id,$json) 
      {
         $this->json = $json;
-        $this->reader = new JsonReader($json);        
+        $this->reader = new JsonReader($json);
         $this->verifications['domain'] = self::$domainDefault;
         $this->verifications['social'] = self::$socialDefault;
         $this->verify($asset_id,$json,$this->reader);
      }
 
      private function verify($asset_id,$json,$reader){
-        if (empty(json_decode($json))) {return;};        
+        if (empty(json_decode($json))) {return;};
         $domain = $this->verifications['domain'];
         $social = $this->verifications['social'];
 
@@ -31,7 +31,7 @@
         };
 
         if ($reader->get_path('social,facebook')) {
-          $facebook_verifier = new FacebookVerifier($this->json);
+          $facebook_verifier = new FacebookVerifier($asset_id,$reader);
           $social['facebook']=$facebook_verifier->verified;
         };
 

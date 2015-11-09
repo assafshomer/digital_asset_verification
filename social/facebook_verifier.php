@@ -9,20 +9,14 @@
 		public static $prefix = 'Verifying issuance of colored coins asset with asset_id:';
 		var $verified;
 
-		function FacebookVerifier($json){
-			$this->json = $json;
-			$this->reader = new JsonReader($json);
-			$this->fb_verify_asset($json,$this->reader);			
-		}
-
-		private function fb_verify_asset($json,$reader){
+		function FacebookVerifier($reader){
 			$uidx = $reader->get_path('social,facebook,uid');
 			$pidx = $reader->get_path('social,facebook,pid');
 			if (!$pidx || !$uidx) {$this->verified = false;};
 			$postx = $this->get_post($uidx,$pidx);
 			$post_contentx = $this->parse_post($postx);
-			$expected_contentx = $this->get_expected_text($json,$reader);
-			$this->verified = ($post_contentx==$expected_contentx);
+			$expected_contentx = $this->get_expected_text($reader);
+			$this->verified = ($post_contentx==$expected_contentx);		
 		}
 
 		private function get_post($uid,$pid){
@@ -34,7 +28,8 @@
 			curl_setopt($ch, CURLOPT_URL,$formed_url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$retrievedhtml = curl_exec ($ch);
-			curl_close($ch); 
+			curl_close($ch);
+			var_dump($retrievedhtml);
 			return $retrievedhtml;		
 		}
 
@@ -48,7 +43,7 @@
 			};	
 		}
 
-		private function get_expected_text($json,$reader){
+		private function get_expected_text($reader){
 			$aid = $reader->get_path('social,facebook,aid');
 			return self::$prefix.' ['.$aid.']';
 		}

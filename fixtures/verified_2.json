@@ -1,0 +1,22 @@
+{
+	"social":{
+		"twitter":{
+			"aid":"LCnLwihU6ce8TjfeDwPEzt9GdWxVS7b2kiTbo",
+			"pid":"659326026909118465"
+		},
+		"facebook":{
+			"aid":"LJEC6Q2h9JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"uid":"1232952150",
+			"pid":"486035954907151"			
+		},
+		"github":{
+			"aid":"LJEC6Q2h9JKNvZqEC87TbEXvxm4br1uivb2QX",
+			"pid":"6c704f5759927212e714"			
+		}
+	},
+	"domain":{
+		"aid":"U9a36XP1UwL5pxaYYiZYJ86sUqWAJ2dGbLaer",
+		"url":"https://www.bankofamerica.com",
+		"path":"assets.txt"
+	}
+}
