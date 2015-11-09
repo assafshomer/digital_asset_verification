@@ -41,7 +41,7 @@
         };
 
         if ($reader->get_path('social,twitter')) {          
-          $twitter_verifier = new TwitterVerifier($asset_id,$this->json);
+          $twitter_verifier = new TwitterVerifier($asset_id,$reader);
           $social['twitter']=$twitter_verifier->verified;
         };
 

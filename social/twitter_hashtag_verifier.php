@@ -18,18 +18,12 @@
 
 		var $verified = false;
 
-		function TwitterVerifier($asset_id,$json){
-			$this->json = $json;			
-			$this->reader = new JsonReader($json);
-			$this->twitter_verify_asset($asset_id,$this->reader);			
-		}
-
-		private function twitter_verify_asset($asset_id,$reader){
+		function TwitterVerifier($asset_id,$reader){
 			$username = $reader->get_path('social,twitter,username');
 			if (!$username) {$this->verified = false;};		
 			$tweets = $this->get_tweets($asset_id);
-			$this->check_tweets($tweets,$asset_id,$username);
-		}		
+			$this->check_tweets($tweets,$asset_id,$username);	
+		}
 
 		private function get_tweets($asset_id){
 			$getfield = '?q=#'.$asset_id;
