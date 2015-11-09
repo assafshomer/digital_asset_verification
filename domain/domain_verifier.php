@@ -6,20 +6,17 @@
 		public static $cdir = 'certs/'; #make sure to chmod 777 
 		public static $certFileName = 'level';
 
-		function DomainVerifier($json){
-			$this->json = $json;
-			$this->reader = new JsonReader($json);
+		function DomainVerifier($reader){
 			$this->asset_verified = false;
 			$this->company_name = '';
 			$this->ssl_verified = false;
 			$this->url_matching = false;
 
-			$this->verify_domain_json($json,$this->reader);
-			$this->verify_asset_json($json,$this->reader);			
+			$this->verify_domain_json($reader);
+			$this->verify_asset_json($reader);			
 		}
 
-		private function verify_domain_json($json,$reader){
-			if (empty($json)) {return;};
+		private function verify_domain_json($reader){
 			$url = $reader->get_path('domain,url');			
 			if ($this->verify_url($url)) {
 				return $this->verify_domain_by_url($url);
@@ -95,8 +92,7 @@
 			return $matches[1];
 		}
 
-		private function verify_asset_json($json,$reader){
-			if (empty($json)) {return;};			
+		private function verify_asset_json($reader){
 			$path = $reader->get_path('domain,path');
 			if (empty($path)) {return;};
 			$url = $reader->get_path('domain,url');

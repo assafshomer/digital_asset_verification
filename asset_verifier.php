@@ -10,23 +10,26 @@
 
     public static $domainDefault = array("company" => '', "ssl_verified" => false, "url_matching" => false, "asset_verified" => false);
     public static $socialDefault = array("facebook" => false, "github" => false, "twitter" => false);
+    public static $prefix = 'Verifying issuance of colored coins asset with ID #';
 
-     function AssetVerifier($asset_id,$json) 
+     function AssetVerifier($asset_id,$json)
      {
-        $this->json = $json;
-        $this->reader = new JsonReader($json);
         $this->verifications['domain'] = self::$domainDefault;
         $this->verifications['social'] = self::$socialDefault;
-        $this->verify($asset_id,$json,$this->reader);
+        if (empty(json_decode($json))) {return;};
+        $this->json = $json;
+        $this->reader = new JsonReader($json);
+        $this->expected_text = self::$prefix.$asset_id;
+        $this->verify($asset_id,$expected_text,$this->reader);
      }
 
-     private function verify($asset_id,$json,$reader){
-        if (empty(json_decode($json))) {return;};
+     private function verify($asset_id,$expected_text,$reader){
+        
         $domain = $this->verifications['domain'];
         $social = $this->verifications['social'];
 
         if ($reader->get_path('domain')) {
-          $domain_verifier = new DomainVerifier($this->json);
+          $domain_verifier = new DomainVerifier($reader);
           $domain=array("company" => $domain_verifier->company_name, "ssl_verified" => $domain_verifier->ssl_verified, "url_matching" => $domain_verifier->url_matching, "asset_verified" => $domain_verifier->asset_verified);
         };
 

@@ -37,7 +37,7 @@
 		}
 
 		private function check_tweets($statuses_array,$asset_id,$username){
-			$expected_content = $this->get_expected_text($asset_id);
+			$expected_content = self::$prefix.$asset_id;
 			foreach ($statuses_array as $key) {
 				$txt = $key['text'];
 				$user = $key['user']['screen_name'];
@@ -47,13 +47,6 @@
 				};
 			}
 		}
-
-
-		private function get_expected_text($asset_id){
-			return self::$prefix.$asset_id;
-		}
-
-
 
 	}
 
