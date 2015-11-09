@@ -2,9 +2,9 @@
 
   include_once 'json_reader.php';
   include 'domain/domain_verifier.php';
-  include 'social/facebook_feed_verifier.php';
+  include 'social/facebook_verifier.php';
   include 'social/github_verifier.php';
-  include 'social/twitter_hashtag_verifier.php';
+  include 'social/twitter_verifier.php';
 
   class AssetVerifier {
 
