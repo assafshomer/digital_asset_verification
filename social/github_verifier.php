@@ -13,7 +13,10 @@
 			if (!$pid) {$this->verified = false;};	
 			$raw_gist = $this->get_gist_with_oauth($pid);
 			$gist_content = $this->parse_gist($raw_gist);
-			$this->verified = ($gist_content==$expected_text);		
+			$regex="/^$expected_text\n|\n$expected_text\n|\n$expected_text$/";
+			preg_match($regex,$gist_content,$matches);
+			$this->verified = (trim($matches[0]) == $expected_text);			
+			// $this->verified = ($gist_content==$expected_text);		
 		}
 
 		function get_gist_with_oauth($pid){
