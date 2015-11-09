@@ -8,7 +8,7 @@
 		public static $github_personal_token = GITHUB_PERSONAL_TOKEN;
 		var $verified;
 
-		function GithubVerifier($asset_id,$expected_text,$reader){
+		function GithubVerifier($expected_text,$reader){
 			$pid = $reader->get_path('social,github,gist_id');
 			if (!$pid) {$this->verified = false;};	
 			$raw_gist = $this->get_gist_with_oauth($pid);
