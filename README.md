@@ -69,7 +69,7 @@
 
 ### Twitter
 
-* You need the twitter handle of your twitter account *@your_twitter_handle*
+* You need the twitter handle of your twitter account **@your_twitter_handle**
 * Add the following element under the asset metadata `verifications` key
 ```JSON
 {	
@@ -79,7 +79,10 @@
 		},
 	}
 }
+```
+
 * After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and tweet the following text, making sure that the asset ID is used as a *hashtag*:
+
 ```Text
 	Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
 ```
