@@ -60,10 +60,26 @@
 	}
 }
 ```
-* After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and edit the comment to include the asset id, like so:
+* After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and **edit the same comment** to include the asset id, like so:
 ```Text
 	Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
 ```
 
 ![Adding your asset id into the comment](/fixtures/images/fb_edit_comment.png?raw=true "Adding your asset id into the comment")
 
+### Twitter
+
+* You need the twitter handle of your twitter account *@your_twitter_handle*
+* Add the following element under the asset metadata `verifications` key
+```JSON
+{	
+	"social":{		
+		"twitter":{			
+			"username":"your_twitter_handle"
+		},
+	}
+}
+* After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and tweet the following text, making sure that the asset ID is used as a *hashtag*:
+```Text
+	Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
+```
