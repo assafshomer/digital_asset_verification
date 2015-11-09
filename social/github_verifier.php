@@ -6,22 +6,14 @@
 	class GithubVerifier {
 		public static $host = 'https://api.github.com';
 		public static $github_personal_token = GITHUB_PERSONAL_TOKEN;
-		public static $prefix = 'Verifying issuance of colored coins asset with asset_id:';
 		var $verified;
 
-		function GithubVerifier($json){
-			$this->json = $json;
-			$this->reader = new JsonReader($json);
-			$this->github_verify_asset($json,$this->reader);			
-		}
-
-		function github_verify_asset($json,$reader){
-			$pid = $reader->get_path('social,github,pid');
+		function GithubVerifier($asset_id,$expected_text,$reader){
+			$pid = $reader->get_path('social,github,gist_id');
 			if (!$pid) {$this->verified = false;};	
 			$raw_gist = $this->get_gist_with_oauth($pid);
 			$gist_content = $this->parse_gist($raw_gist);
-			$expected_content = $this->get_expected_text($json,$reader);
-			$this->verified = ($gist_content==$expected_content);
+			$this->verified = ($gist_content==$expected_text);		
 		}
 
 		function get_gist_with_oauth($pid){
@@ -48,13 +40,6 @@
 			$reader = new JsonReader($raw_gist);
 			return $reader->get_path('files,gistfile1.txt,content');
 		}
-
-		private function get_expected_text($json,$reader){
-			$aid = $reader->get_path('social,github,aid');
-			return self::$prefix.' ['.$aid.']';
-		}
-
-
 
 	}
 

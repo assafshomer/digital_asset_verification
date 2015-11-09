@@ -39,7 +39,7 @@
         };
 
         if ($reader->get_path('social,github')) {
-          $github_verifier = new GithubVerifier($this->json);
+          $github_verifier = new GithubVerifier($asset_id,$expected_text,$reader);
           $social['github']=$github_verifier->verified;
         };
 
