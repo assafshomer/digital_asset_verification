@@ -149,6 +149,35 @@ Verifying issuance of colored coins asset with ID #LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8
 * After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and tweet the following text, making sure that the asset ID is used as a **hashtag**:
 
 ```Text
-	Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
+Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
 ```
 
+## Domain
+
+* Place a text file on your server behind https
+* Let's say the path to the file is `https://www.yourcompany.com/assets.txt`
+* Add the following element under the asset metadata `verifications` key
+```JSON
+{	
+	"domain":{
+		"url":"https://www.yourcompany.com",
+		"path":"assets.txt"
+	}
+}
+```
+* If The file was in a directory `https://www.yourcompany.com/assets/assets.txt` you should use 
+```JSON
+{	
+	"domain":{
+		"url":"https://www.yourcompany.com",
+		"path":"assets/assets.txt"
+	}
+}
+* For each asset that you want to verify (e.g. asset ids `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP` and `LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8Lkk2EjoF`) add a line to the text file:
+```
+...
+Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
+Verifying issuance of colored coins asset with ID #LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8Lkk2EjoF
+...
+
+```
