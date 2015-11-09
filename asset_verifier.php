@@ -20,7 +20,7 @@
         $this->json = $json;
         $this->reader = new JsonReader($json);
         $this->expected_text = self::$prefix.$asset_id;
-        $this->verify($asset_id,$expected_text,$this->reader);
+        $this->verify($asset_id,$this->expected_text,$this->reader);
      }
 
      private function verify($asset_id,$expected_text,$reader){
@@ -34,7 +34,7 @@
         };
 
         if ($reader->get_path('social,facebook')) {
-          $facebook_verifier = new FacebookVerifier($asset_id,$reader);
+          $facebook_verifier = new FacebookVerifier($asset_id,$expected_text,$reader);
           $social['facebook']=$facebook_verifier->verified;
         };
 
@@ -44,7 +44,7 @@
         };
 
         if ($reader->get_path('social,twitter')) {          
-          $twitter_verifier = new TwitterVerifier($asset_id,$reader);
+          $twitter_verifier = new TwitterVerifier($asset_id,$expected_text,$reader);
           $social['twitter']=$twitter_verifier->verified;
         };
 

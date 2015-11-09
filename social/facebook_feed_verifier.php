@@ -6,11 +6,10 @@
 	class FacebookVerifier {
 		public static $host = 'https://graph.facebook.com';
 		public static $fb_app_token = FACEBOOK_APP_TOKEN;
-		public static $prefix = 'Verifying issuance of colored coins asset with id #';
 		public static $page_id = '486034634907283';
 		var $verified = false;
 
-		function FacebookVerifier($asset_id,$reader){
+		function FacebookVerifier($asset_id,$expected_text,$reader){
 			$comment_id = $reader->get_path('social,facebook,comment_id');
 			$fb_id = $reader->get_path('social,facebook,fb_id');
 			$story_fbid = $reader->get_path('social,facebook,story_fbid');
@@ -48,9 +47,9 @@
 			};
 			
 			// $post_contentx = $this->parse_feed($postx);
-			$expected_comment = self::$prefix.$asset_id;
+			// $expected_comment = self::$prefix.$asset_id;
 			// echo "expected comment [".$expected_comment."]\n";
-			$this->verified = ($this->verification_comment==$expected_comment);		
+			$this->verified = ($this->verification_comment==$expected_text);		
 		}
 
 		function search_page_feed(){			
@@ -67,15 +66,15 @@
 			return $retrievedhtml;
 		}
 
-		private function parse_feed($raw_post){
-			$tmp = json_decode($raw_post,TRUE);
-			$error_message = $tmp['errors'][0]['message'];
-			if (strlen($error_message)>0) {
-				return $error_message;
-			} else {
-				return $tmp['data'];
-			};	
-		}
+		// private function parse_feed($raw_post){
+		// 	$tmp = json_decode($raw_post,TRUE);
+		// 	$error_message = $tmp['errors'][0]['message'];
+		// 	if (strlen($error_message)>0) {
+		// 		return $error_message;
+		// 	} else {
+		// 		return $tmp['data'];
+		// 	};	
+		// }
 
 	}
 
