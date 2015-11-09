@@ -6,14 +6,14 @@
 		public static $cdir = 'certs/'; #make sure to chmod 777 
 		public static $certFileName = 'level';
 
-		function DomainVerifier($reader){
+		function DomainVerifier($asset_id,$reader){
 			$this->asset_verified = false;
 			$this->company_name = '';
 			$this->ssl_verified = false;
 			$this->url_matching = false;
 
 			$this->verify_domain_json($reader);
-			$this->verify_asset_json($reader);			
+			$this->verify_asset_json($asset_id,$reader);			
 		}
 
 		private function verify_domain_json($reader){
@@ -92,17 +92,15 @@
 			return $matches[1];
 		}
 
-		private function verify_asset_json($reader){
+		private function verify_asset_json($asset_id,$reader){
 			$path = $reader->get_path('domain,path');
 			if (empty($path)) {return;};
 			$url = $reader->get_path('domain,url');
 			if (empty($url)) {return;};
-			$aid = $reader->get_path('domain,aid');
-			if (empty($aid)) {return;};
 			$file = file_get_contents($url.'/'.$path);
-			$regex="/^$aid\n|\n$aid\n|\n$aid$/";
+			$regex="/^$asset_id\n|\n$asset_id\n|\n$asset_id$/";
 			preg_match($regex,$file,$matches);
-			$this->asset_verified = (trim($matches[0]) == $aid);
+			$this->asset_verified = (trim($matches[0]) == $asset_id);
 		}
 
 	}

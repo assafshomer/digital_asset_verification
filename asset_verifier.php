@@ -29,8 +29,8 @@
         $social = $this->verifications['social'];
 
         if ($reader->get_path('domain')) {
-          $domain_verifier = new DomainVerifier($reader);
-          $domain=array("company" => $domain_verifier->company_name, "ssl_verified" => $domain_verifier->ssl_verified, "url_matching" => $domain_verifier->url_matching, "asset_verified" => $domain_verifier->asset_verified);
+          $v = new DomainVerifier($asset_id,$reader);
+          $domain=array("company" => $v->company_name, "ssl_verified" => $v->ssl_verified, "url_matching" => $v->url_matching, "asset_verified" => $v->asset_verified);
         };
 
         if ($reader->get_path('social,facebook')) {
