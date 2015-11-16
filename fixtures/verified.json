@@ -13,7 +13,6 @@
 		}
 	},
 	"domain":{
-		"url":"https://www.bankofamerica.com",
-		"path":"assets.txt"
+		"url":"https://www.bankofamerica.com/assets.txt"
 	}
 }

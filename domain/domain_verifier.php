@@ -10,16 +10,22 @@
 			$this->asset_verified = false;
 			$this->company_name = '';
 			$this->ssl_verified = false;
-			$this->url_matching = false;
-
+			$this->url_matching = false;			
 			$this->verify_domain_json($reader);
-			$this->verify_asset_json($asset_id,$reader);			
+			if ($this->ssl_verified && $this->url_matching) {
+				$this->verify_asset_json($asset_id);
+			}						
 		}
 
 		private function verify_domain_json($reader){
 			$url = $reader->get_path('domain,url');			
-			if ($this->verify_url($url)) {
-				return $this->verify_domain_by_url($url);
+			if ($this->verify_url($url)) {				
+				$this->url = $url;
+				$parsed_url = parse_url($url);
+				$this->domain = $parsed_url['scheme'].'://'.$parsed_url['host'];
+				$this->path = $parsed_url['path'];
+				$this->host = $parsed_url['host'];
+				return $this->verify_domain_by_url();
 			} else {
 				return;
 			};
@@ -30,12 +36,13 @@
 			return preg_match($pattern, $url) ? TRUE : false;
 		}
 
-		private function verify_domain_by_url($url){
+		private function verify_domain_by_url(){
+			$url = $this->domain;			
 			$certificate_chain_length = $this->load_certificate_chain($url);
 			$chain_data = $this->extract_chain_data($certificate_chain_length,$url);			
 			$this->ssl_verified=$this->verify_chain($chain_data);
 			$this->get_company_data($url);
-			$this->url_matching = $this->match_urls($this->get_domain_from_url($url),$this->company_url);		
+			$this->url_matching = $this->match_urls($this->host,$this->company_url);		
 		}
 
 		private function match_urls($url1,$url2){
@@ -61,7 +68,7 @@
 
 		private function extract_chain_data($chain_length,$url){		
 			$chain_data = array();
-			$tag = str_replace('.', '_', $this->get_domain_from_url($url));	
+			$tag = str_replace('.', '_', $this->host);	
 			for ($x = 0; $x < $chain_length; $x++) {		
 				$result=file_get_contents(self::$cdir.$tag.'_result'.$x.'.txt');
 				preg_match("/0x\S+\s(\w+)\n/", $result,$matches);
@@ -87,17 +94,8 @@
 			return exec($cmd);
 		}
 
-		private function get_domain_from_url($url){
-			preg_match("/https:\/\/(.+)/", $url,$matches);
-			return $matches[1];
-		}
-
-		private function verify_asset_json($asset_id,$reader){
-			$path = $reader->get_path('domain,path');
-			if (empty($path)) {return;};
-			$url = $reader->get_path('domain,url');
-			if (empty($url)) {return;};
-			$file = file_get_contents($url.'/'.$path);
+		private function verify_asset_json($asset_id){
+			$file = file_get_contents($this->url);
 			$regex="/^$asset_id\n|\n$asset_id\n|\n$asset_id$/";
 			preg_match($regex,$file,$matches);
 			$this->asset_verified = (trim($matches[0]) == $asset_id);
