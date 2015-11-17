@@ -199,3 +199,16 @@ Verifying issuance of colored coins asset with ID #LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8
 
 You can check that the results of this check match what you get from [ssl_checker](https://www.sslshopper.com/ssl-checker.html), or [digicert](https://www.digicert.com/help/)
 For example, surprisingly enough "https://www.target.com" doesn't pass the verification, and indeed, we [get the same result](https://www.sslshopper.com/ssl-checker.html#hostname=https://www.target.com) from ssl checker.
+
+# Links
+## Facebook
+	https://www.facebook.com/<page_id>/
+	https://www.facebook.com/permalink.php?story_fbid=705383656259338&id=705379359593101
+	https://www.facebook.com/permalink.php?story_fbid=791151304328379&id=791150224328487
+    {
+      "message": "Verifying issuance of colored coins asset with ID #U9a36XP1UwL5pxaYYiZYJ86sUqWAJ2dGbLaer",
+      "created_time": "2015-11-17T10:59:02+0000",
+      "id": "791150224328487_791151304328379"
+    },	
+## Twitter
+	https://twitter.com/assaf_colu/status/666565116838731776

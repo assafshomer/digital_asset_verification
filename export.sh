@@ -16,4 +16,5 @@ rm -f prod/domain/certs/*.txt;
 rm -f prod/domain/certs/*.crt;
 rm -f prod/social/facebook_verifier_userpage.php;
 COM="$(git rev-parse --short HEAD)"
-zip -r "zip/verifications_"$COM".zip" prod 
+zip -r "zip/verifications_"$COM".zip" prod
+echo "production folder is zip/verifications_"$COM".zip"

@@ -6,6 +6,7 @@
 	class FacebookVerifier {
 		public static $host = 'https://graph.facebook.com';
 		public static $fb_app_token = FACEBOOK_APP_TOKEN;		
+		public static $link_prefix = 'https://www.facebook.com/permalink.php';
 
 		function FacebookVerifier($asset_id,$expected_text,$reader){
 			$this->verified = false;
@@ -16,7 +17,9 @@
 			foreach ($data as $key => &$value) {
 				$msg = $value["message"];
 				if ($msg == $expected_text) {					
-					$this->verified = TRUE;
+					// $this->verified = TRUE;
+					$tmp = explode('_',$value["id"]);
+					$this->verified = self::$link_prefix."?story_fbid=$tmp[1]&id=$tmp[0]";
 				};
 			};			
 		}
