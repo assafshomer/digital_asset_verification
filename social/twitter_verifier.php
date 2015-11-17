@@ -18,6 +18,7 @@
     	'consumer_secret' => TWITTER_CONSUMER_SECRET
 		);
 		public static $batch = 200;
+		public static $link_prefix='https://twitter.com/';
 
 		var $verified = false;
 
@@ -47,9 +48,12 @@
 			$statuses_array = $this->get_tweets_by_hashtag($asset_id);
 			foreach ($statuses_array as $key) {
 				$txt = $key['text'];
+				// echo $key['id'];
 				$user = $key['user']['screen_name'];
 				if ($txt==$expected_text && $user==$username) {
-					$this->verified = TRUE;					
+					// $this->verified = TRUE;
+					$link = self::$link_prefix.$username.'/status/'.$key['id'];
+					$this->verified = $link;	
 				};
 			}
 		}
