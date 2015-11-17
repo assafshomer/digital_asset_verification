@@ -2,3 +2,5 @@ domain/certs/*
 api_test.php
 *secret*
 old/
+zip/
+prod/
