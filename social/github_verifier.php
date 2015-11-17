@@ -6,17 +6,22 @@
 	class GithubVerifier {
 		public static $host = 'https://api.github.com';
 		public static $github_personal_token = GITHUB_PERSONAL_TOKEN;
-		var $verified;
+		public static $link_prefix = 'https://gist.github.com/';
+
+		// var $verified;
 
 		function GithubVerifier($expected_text,$reader){
+			$this->verified = false;
 			$pid = $reader->get_path('social,github,gist_id');
 			if (!$pid) {$this->verified = false;};	
 			$raw_gist = $this->get_gist_with_oauth($pid);
 			$gist_content = $this->parse_gist($raw_gist);
 			$regex="/^$expected_text\n|\n$expected_text\n|\n$expected_text$/";
 			preg_match($regex,$gist_content,$matches);
-			$this->verified = (trim($matches[0]) == $expected_text);			
-			// $this->verified = ($gist_content==$expected_text);		
+			if (trim($matches[0]) == $expected_text) {
+				$link = self::$link_prefix.$pid;
+				$this->verified = $link;
+			}
 		}
 
 		function get_gist_with_oauth($pid){
