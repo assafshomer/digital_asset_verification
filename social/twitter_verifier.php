@@ -20,9 +20,10 @@
 		public static $batch = 200;
 		public static $link_prefix='https://twitter.com/';
 
-		var $verified = false;
+		// var $verified = false;
 
 		function TwitterVerifier($asset_id,$expected_text,$reader){
+			$this->verified = false;
 			$this->max_id = 0;
 			$username = $reader->get_path('social,twitter,username');
 			if (!$username) {$this->verified = false;};
