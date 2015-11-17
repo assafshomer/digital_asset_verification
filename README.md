@@ -165,16 +165,15 @@ Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw9
 ```JSON
 {	
 	"domain":{
-		"url":"https://www.yourcompany.com",
-		"path":"assets.txt"
+		"url":"https://www.yourcompany.com/assets.txt"		
 	}
 }
 ```
-* If The file was in a directory `https://www.yourcompany.com/assets/assets.txt` you should use 
+* If The file is not directly under the root of the website `https://www.yourcompany.com/path/to/file/filename.txt` you should use 
 ```JSON
 {	
 	"domain":{
-		"url":"https://www.yourcompany.com/path/to/file/filename"		
+		"url":"https://www.yourcompany.com/path/to/file/filename.txt"		
 	}
 }
 ```
