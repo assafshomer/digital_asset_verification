@@ -97,39 +97,45 @@ Verifying issuance of colored coins asset with ID #LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8
 
 ### Facebook
 * Log in to your facebook account
-* Search for the "Colored Coins Asset Verification" page
-* Post something on the "Colored Coins Asset Verification" page, preferably relevant to your asset, but it is not important. However, remember that customers may be looking at this post.
-* Find your post on the page and **make a comment** with the following text 
-```Text
-	Verifying issuance of colored coins asset with ID #assetid
-```
-* Right click on the comment timestamp
+* On the top right corner expand the menu and click on "Create Page"
 
-![Extracting facebook ids from the comment timestamp](/fixtures/images/fb_comment_timestamp.png?raw=true "Extracting facebook ids from the comment timestamp")
+![Creating a user page on Facebook](/fixtures/images/fb_create_user_page.png?raw=true "Creating a user page on Facebook")
 
-* Copy the link location, it should look something like this
+* Select the appropriate category 
+* Considering that this page should be dedicated to posting asset endorsment messages, you should probably name it properly and consider attaching an image and an appropriate description
+* Now that you have created the page, click on the "Settings" button
+
+![Finding the Facebook page settings button](/fixtures/images/fb_page_settings_button.png?raw=true "Finding the Facebook page settings button")
+
+* On the setting page, disable visitor posts
+
+![Disabling visitor posts on a Facebook page](/fixtures/images/fb_disable_visitors_posts.png?raw=true "Disabling visitor posts on a Facebook page")
+
+* Grab the page ID from the url.
+The URL looks something like:
 <pre>
-	https://www.facebook.com/permalink.php?<b>story_fbid=493393697504710&id=486034634907283&comment_id=493393800838033</b>&offset=0&total_comments=1&comment_tracking=%7B%22tn%22%3A%22R%22%7D 
+	https://www.facebook.com/Foobarbuzzquaxx-<b>705379359593101</b>/	
 </pre>
 
-* Add the following element under the asset metadata `verifications` key
+The page ID is the number at the end of the URL, in the above case it is `705379359593101`
+
+![Grab Facebook page id from URL](/fixtures/images/grabbing_fb_page_id.png?raw=true "Grab Facebook page id from URL")
+
+* Add the following element under the asset metadata `verifications` key, for example
 ```JSON
 {	
 	"social":{		
 		"facebook":{
-			"story_fbid":493393697504710,
-			"id":486034634907283,
-			"comment_id":493393800838033						
+			"page_id": 705379359593101					
 		}
 	}
 }
 ```
-* After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and **edit the same comment** to include the asset id, like so:
+
+* After the asset is issued, grab the asset id (say it is `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP`) and **post on that page** the following text:
 ```Text
 	Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP
 ```
-
-![Adding your asset id into the comment](/fixtures/images/fb_edit_comment.png?raw=true "Adding your asset id into the comment")
 
 ### Twitter
 
