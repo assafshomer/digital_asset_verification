@@ -3,7 +3,7 @@
   // include_once 'errors.php'; 
   include_once 'json_reader.php';
   include 'domain/domain_verifier.php';
-  include 'social/facebook_verifier_userpage.php';
+  include 'social/facebook_verifier.php';
   include 'social/github_verifier.php';
   include 'social/twitter_verifier.php';
 
