@@ -15,8 +15,8 @@
 
      function AssetVerifier($asset_id,$json)
      {
-        $this->verifications['domain'] = self::$domainDefault;
-        $this->verifications['social'] = self::$socialDefault;
+        // $this->verifications['domain'] = self::$domainDefault;
+        // $this->verifications['social'] = self::$socialDefault;
         if (empty(json_decode($json))) {return;};
         $this->json = $json;
         $this->reader = new JsonReader($json);
@@ -48,9 +48,14 @@
           $twitter_verifier = new TwitterVerifier($asset_id,$expected_text,$reader);
           $social['twitter']=$twitter_verifier->verified;
         };
-
-        $this->verifications['social'] = $social;
-        $this->verifications['domain'] = $domain;
+        if ($social) {
+          $this->verifications['social'] = $social;
+        };
+        if ($domain) {
+          $this->verifications['domain'] = $domain;
+        };
+        
+        
          
      }
 

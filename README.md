@@ -3,7 +3,6 @@
 ## Installation
 ```Batchfile	
 	sudo chmod -R 777 domain/certs
-	sudo chmod 777 social/twitter_bearer_token.txt
 	sudo chmod 777 domain/*.sh
 ```
 
@@ -169,11 +168,20 @@ Verifying issuance of colored coins asset with ID #U3uPyQeyNRafPy7popDfhZui8Hsw9
 ```JSON
 {	
 	"domain":{
-		"url":"https://www.yourcompany.com",
-		"path":"assets/assets.txt"
+		"url":"https://www.yourcompany.com/path/to/file/filename"		
 	}
 }
 ```
+For example:
+
+```JSON
+{	
+	"domain":{
+		"url":"https://www.example.com/digital_assets/assets.txt"		
+	}
+}
+```
+
 * For each asset that you want to verify (e.g. asset ids `U3uPyQeyNRafPy7popDfhZui8Hsw98B5XMUpP` and `LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8Lkk2EjoF`) add a line to the text file
 ```
 ...
@@ -182,3 +190,6 @@ Verifying issuance of colored coins asset with ID #LKUYHRCMbqUNgfNCGFnXv1AvB5Pv8
 ...
 
 ```
+
+You can check that the results of this check match what you get from [ssl_checker](https://www.sslshopper.com/ssl-checker.html), or [digicert](https://www.digicert.com/help/)
+For example, surprisingly enough "https://www.target.com" doesn't pass the verification, and indeed, we [get the same result](https://www.sslshopper.com/ssl-checker.html#hostname=https://www.target.com) from ssl checker.

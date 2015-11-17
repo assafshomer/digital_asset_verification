@@ -1,8 +1,5 @@
 {
-	"social":{
-	},
 	"domain":{
-		"url":"https://www.wellsfargo.com",
-		"path":"assets.txt"
+		"url":"https://www.wellsfargo.com/assets.txt"
 	}
 }

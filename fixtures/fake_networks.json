@@ -15,7 +15,7 @@
 		}
 	},
 	"domain":{
-		"url":"https://www.example.com",
+		"url":"https://www.example.org",
 		"path":"assets.txt"
 	}
 }
