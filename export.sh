@@ -8,9 +8,10 @@ rm -f prod/fixtures/*.*;
 rm -rf prod/fixtures/images;
 cp "fixtures/verified_"$AID"_bofa.json" prod/fixtures ;
 cp "fixtures/verified_"$AID"_colu.json" prod/fixtures ;
-cp README.prod.md prod/README.md
+cp README.md prod/
 cp json_reader.php prod
 cp asset_verifier.php prod
+cp api.php prod
 rm -f prod/domain/certs/*.txt;
 rm -f prod/domain/certs/*.crt;
 rm -f prod/social/facebook_verifier_userpage.php;
