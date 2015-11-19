@@ -17,6 +17,15 @@
 			}						
 		}
 
+		private function verify_asset_json($asset_id){
+			$file = file_get_contents($this->url);
+			$regex="/^$asset_id\n|\n$asset_id\n|\n$asset_id$/";
+			preg_match($regex,$file,$matches);
+			if (trim($matches[0]) == $asset_id) {
+				$this->asset_verified = array("company_name" => $this->company_name,"company_url" => $this->host);
+			};			
+		}		
+
 		private function verify_domain_json($reader){
 			$url = $reader->get_path('domain,url');			
 			if ($this->verify_url($url)) {				
@@ -94,12 +103,7 @@
 			return exec($cmd);
 		}
 
-		private function verify_asset_json($asset_id){
-			$file = file_get_contents($this->url);
-			$regex="/^$asset_id\n|\n$asset_id\n|\n$asset_id$/";
-			preg_match($regex,$file,$matches);
-			$this->asset_verified = (trim($matches[0]) == $asset_id);
-		}
+
 
 	}
 
